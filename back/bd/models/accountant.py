@@ -1,8 +1,8 @@
 from sqlalchemy import Column, String, Integer
 from .database import base
 
-class librarian(base):
-    __tablename__ = "librarians"
+class accountant(base):
+    __tablename__ = "accountantы"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)

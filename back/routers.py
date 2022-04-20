@@ -14,121 +14,118 @@ CORS(app)
 @app.route('/aut', methods=['POST'])
 def autf():
     r = request.json
-    return back.autLibrarian(
+    return back.autAccountant(
         r['email'],
         r['password']
     )
-@app.route('/rent/create')
-def rentCreate():
-    r = request.args
-    func = back.createRent
-    return func(
-        r['readerId'],
-        r['bookId'],
-        coalesce(r['rentDate'],func.__defaults__[0]),
-        coalesce(r['dayLimit'],func.__defaults__[1])
-    )
-@app.route('/rent/close')
-def rentClose():
-    r = request.args
-    return back.closeRent(
-        r['rentId']
-    )
-@app.route('/rent/get')
+@app.route('/movie/get')
 def rentGet():
     r = request.args
-    rentDate = datetime.strptime(r['rentDate'], "%Y-%m-%d").date() if match(r'\S{4}-\S{1,2}-\S{1,2}', r['rentDate']) else ''
-    date_limit = datetime.strptime(r['date_limit'], "%Y-%m-%d").date() if match(r'\S{4}-\S{1,2}-\S{1,2}', r['rentDate']) else ''
-    return back.getRentsInfoById(json.loads(back.getFiltredRents(
-        r['readerId'],
-        r['bookId'],
-        rentDate,
-        date_limit,
-        coalesce(r['status'],back.getFiltredRents.__defaults__[4]),
-        coalesce(r['limit'],back.getFiltredRents.__defaults__[5]),
-        coalesce(r['offset'],back.getFiltredRents.__defaults__[6])
+    return back.getMoviesInfoById(json.loads(back.getFiltredMovies(
+        r['title'],
+        r['year'],
+        r['duration'],
+        r['publisher'],
+        r['genre'],
+        coalesce(r['limit'],back.getFiltredMovies.__defaults__[5]),
+        coalesce(r['offset'],back.getFiltredMovies.__defaults__[6])
     ))['body'])
-@app.route('/books/get')
+@app.route('/seance/get')
 def booksGet():
     r=request.args
-    return back.getBooksInfoById(json.loads(back.getFiltredBooks(
+    movie_id = json.loads(back.getFiltredMovies(
         r['title'],
-        r['unique_number'],
-        r['author'],
-        r['year'],
-        r['publishment'],
-        r['publish_city'],
-        r['chapter'],
-        coalesce(r['limit'],back.getFiltredRents.__defaults__[-2]),
-        coalesce(r['offset'],back.getFiltredRents.__defaults__[-1])
+        r['MovieYear'],
+        r['duration'],
+        r['publisher'],
+        r['genre'],
+        coalesce(r['limit'],back.getFiltredMovies.__defaults__[-2]),
+        coalesce(r['offset'],back.getFiltredMovies.__defaults__[-1])
+    ))['body']
+    return back.getSeancesInfoById(json.loads(back.getFiltredSeances(
+        movie_id,
+        r['SeanceYear'],
+        r['month'],
+        r['day'],
+        r['hour'],
+        r['hall_n'],
+        coalesce(r['limit'],back.getFiltredSeances.__defaults__[-2]),
+        coalesce(r['offset'],back.getFiltredSeances.__defaults__[-1])
     ))['body'])
-@app.route('/books/add')
-def bookAdd():
-    r=request.args
-    return back.addBook(
-        r['title'],
-        r['unique_number'],
-        r['author'],
-        r['year'],
-        r['publishment'],
-        r['publish_city'],
-        r['chapter']
-    )
-@app.route('/books/update')
-def bookUpdate():
+@app.route('/ticket/get')
+def readersGet():
     r = request.args
-    return back.updateBookData(
-        r['bookId'],
+    movie_id = json.loads(back.getFiltredMovies(
         r['title'],
-        r['unique_number'],
-        r['author'],
-        r['year'],
-        r['publishment'],
-        r['publish_city'],
-        r['chapter']
-    )
-@app.route('/readers/get')
-def readersGet(): #name: str = "", surname: str = "", patronymic: str = "", passport: str = "", address: str = "", telnumber: str = "", email: str = ""):
-    r = request.args
-    return back.getReadersInfoById(json.loads(back.getFiltredReaders(
-        r['name'],
-        r['surname'],
-        r['patronymic'],
-        r['passport'],
-        r['address'],
-        r['telnumber'],
-        r['email']
+        r['MovieYear'],
+        r['duration'],
+        r['publisher'],
+        r['genre'],
+        coalesce(r['limit'],back.getFiltredMovies.__defaults__[-2]),
+        coalesce(r['offset'],back.getFiltredMovies.__defaults__[-1])
+    ))['body']
+    seance_id = json.loads(back.getFiltredSeances(
+        movie_id,
+        r['SeanceYear'],
+        r['month'],
+        r['day'],
+        r['hour'],
+        r['hall_n'],
+        coalesce(r['limit'],back.getFiltredSeances.__defaults__[-2]),
+        coalesce(r['offset'],back.getFiltredSeances.__defaults__[-1])
+    ))['body']
+    seat_id = json.loads(back.getFiltredSeats( #hall_n: int = None, row_n: int = None, seat_n: int = None, seat_type
+        r['hall_n'],
+        r['row_n'],
+        r['seat_n'],
+        r['seat_type'],
+        coalesce(r['limit'],back.getFiltredSeats.__defaults__[-2]),
+        coalesce(r['offset'],back.getFiltredSeats.__defaults__[-1])
+    ))['body']
+    return back.getTicketsInfoById(json.loads(back.getFiltredTickets(
+        seance_id,
+        seat_id,
+        r['price'],
+        r['sold_status'],
+        r['booking_status'],
+        coalesce(r['limit'],back.getFiltredTickets.__defaults__[-2]),
+        coalesce(r['offset'],back.getFiltredTickets.__defaults__[-1])
     ))['body'])
-@app.route('/readers/add')
-def readersAdd():
+@app.route('/stat/getMovie') ###########
+def statGetMovie():
     r = request.args
-    return back.addReader(
-        r['name'],
-        r['surname'],
-        r['patronymic'],
-        r['passport'],
-        r['address'],
-        r['telnumber'],
-        r['email']
+    movie_id = json.loads(back.getFiltredMovies(
+        r['title'],
+        r['year'],
+        r['duration'],
+        r['publisher'],
+        r['genre'],
+        coalesce(r['limit'],back.getFiltredMovies.__defaults__[-2]),
+        coalesce(r['offset'],back.getFiltredMovies.__defaults__[-1])
+    ))['body']
+    return back.getMovieStat(
+        movie_id,
     )
-@app.route('/readers/update')
-def readersUpdate():
+@app.route('/stat/getSeance')
+def statGetSeance():
     r = request.args
-    return back.updateReader(
-        r['readerId'],
-        r['name'],
-        r['surname'],
-        r['patronymic'],
-        r['passport'],
-        r['address'],
-        r['telnumber'],
-        r['email']
+    movie_id = json.loads(back.getFiltredSeances(
+        r['title'],
+        r['MovieYear'],
+        r['duration'],
+        r['publisher'],
+        r['genre'],
+        coalesce(r['limit'],back.getFiltredSeances.__defaults__[-2]),
+        coalesce(r['offset'],back.getFiltredSeances.__defaults__[-1])
+    ))['body']
+    seance_id = json.loads(back.getFiltredSeances(
+        movie_id,
+        r['SeanceYear'],
+        r['month'],
+        r['day'],
+        r['hour'],
+        r['hall_n']
+    ))['body']
+    return back.getSeanceStat()(
+        seance_id
     )
-@app.route('/rent/getOverdueBooks')
-def rentGetBooks():
-    r = request.args
-    return back.getBooksInfoById(json.loads(back.getOverdueBooks())['body'])
-@app.route('/rent/getOverdueReaders')
-def rentGetReaderss():
-    r = request.args
-    return back.getReadersInfoById(json.loads(back.getOverdueReaders())['body'])

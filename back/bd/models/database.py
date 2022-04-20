@@ -8,7 +8,7 @@ import psycopg2
 DATABASE_NAME = "cinemabd"
 DB_PATH = "back/bd/"
 
-engine = create_engine(f'postgresql+psycopg2://postgres:admin@localhost/{DATABASE_NAME}')
+engine = create_engine(f'postgresql+psycopg2://postgres:admin@localhost/{DATABASE_NAME}', isolation_level="AUTOCOMMIT")
 session = sessionmaker(bind=engine)
 
 base = declarative_base()
