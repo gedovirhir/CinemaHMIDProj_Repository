@@ -1,0 +1,16 @@
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\bin\Debug\Kinoteatr.exe.config
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\bin\Debug\Kinoteatr.exe
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\bin\Debug\Kinoteatr.pdb
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.csprojAssemblyReference.cache
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.MainMenu.resources
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.Properties.Resources.resources
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.csproj.GenerateResource.cache
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.csproj.CoreCompileInputs.cache
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.exe
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.pdb
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.Sessions.resources
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\bin\Debug\Newtonsoft.Json.dll
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\bin\Debug\Newtonsoft.Json.xml
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.csproj.CopyComplete
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.Statistic.resources
+C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.Tickets.resources
