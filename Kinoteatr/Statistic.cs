@@ -31,7 +31,7 @@ namespace Kinoteatr
             WebClient client = new WebClient();
             client.Encoding = Encoding.GetEncoding("utf-8");
 
-            WebRequest request1 = WebRequest.Create("http://25.46.163.182:8080/stat/getSeance?title&MovieYear&duration&publisher&genre&limit=100&offset&SeanceYear&month&day&hour&hall_n");
+            WebRequest request1 = WebRequest.Create("http://localhost:8080/stat/getSeance?title&MovieYear&duration&publisher&genre&limit=100&offset&SeanceYear&month&day&hour&hall_n");
             WebResponse response1 = request1.GetResponse();
             using (Stream stream = response1.GetResponseStream())
             {
@@ -63,7 +63,7 @@ namespace Kinoteatr
 
             jsonLine = "";
 
-            WebRequest request2 = WebRequest.Create("http://25.46.163.182:8080/stat/getMovie?title=&year=&duration=&publisher=&genre=&limit&offset");
+            WebRequest request2 = WebRequest.Create("http://localhost:8080/stat/getMovie?title=&year=&duration=&publisher=&genre=&limit&offset");
             WebResponse response2 = request2.GetResponse();
             using (Stream stream = response2.GetResponseStream())
             {

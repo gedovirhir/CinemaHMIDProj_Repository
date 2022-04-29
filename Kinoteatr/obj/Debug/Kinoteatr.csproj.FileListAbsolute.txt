@@ -14,3 +14,19 @@ C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\bi
 C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.csproj.CopyComplete
 C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.Statistic.resources
 C:\Work\Программирование\Кекит от 20.04.2022\Kinoteatr\obj\Debug\Kinoteatr.Tickets.resources
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\bin\Debug\Kinoteatr.exe.config
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\bin\Debug\Kinoteatr.exe
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\bin\Debug\Kinoteatr.pdb
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\bin\Debug\Newtonsoft.Json.dll
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\bin\Debug\Newtonsoft.Json.xml
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.csprojAssemblyReference.cache
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.MainMenu.resources
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.Properties.Resources.resources
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.Sessions.resources
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.Statistic.resources
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.Tickets.resources
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.csproj.GenerateResource.cache
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.csproj.CoreCompileInputs.cache
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.csproj.CopyComplete
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.exe
+C:\Progs\Progu\CinemaHMIDProj_Repository\Kinoteatr\obj\Debug\Kinoteatr.pdb

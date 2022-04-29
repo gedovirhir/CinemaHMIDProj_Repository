@@ -94,14 +94,14 @@ def _load_fake_data(s):
     sdt = datetime(2022, 3, 1, 8, 0) #startdatetime
     rentalday = 3
     seancecount = 2
-    movperday = int(movieCount/rentalday)
+    movperday = int(movieCount/rentalday) #4
 
     seances_id = []
     for i in range(rentalday):
         for h in range(hall_n):
             dt = sdt + timedelta(days=i)
             num = lambda x: (x+h) % (movperday) #чередование фильмов между залами, чтобы в нескольких залах не шли одни и те же фильмы
-            movs = [(movies['mov_id'][num(i+k)],num(i+k)) for k in range(movperday)] #(id фильма, индекс в массиве)
+            movs = [(movies['mov_id'][i*movperday + num(k)],i*movperday + num(k)) for k in range(movperday)] #(id фильма, индекс в массиве)
             for _ in range(seancecount):
                 for m in movs:
                     sc = seance(m[0], dt, h)
