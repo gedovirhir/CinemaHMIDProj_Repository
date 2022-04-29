@@ -125,6 +125,7 @@ def getRentsInfoById(rents_id: list):
 #РАБОТА С КНИГАМИ
 def getFiltredMovies(title: str = "", year: int = None, duration: int = None, publisher: str = "", genres: str = '', limit = 20, offset = 0): #возвращает список должников
     try:
+        limit, offset = int(limit), int(offset)
         title, year, duration, publisher, genres = getFiltredMovies_parse(title, year, duration, publisher, genres)
         filtredMovs = S.query(movie).join(movie_genre).join(genre).filter(and_(
             movie.title.ilike(f'%{title}%'), #название
@@ -237,7 +238,8 @@ def updateBookData(book_id: int, title: str = "", unique_number: str = "", autho
 #РАБОТА С ЧИТАТЕЛЯМИ #movie_id: int, date_time: datetime, hall_n: int
 def getFiltredSeances(movieId: list = [], year: int = None, month: int = None, day: int = None, hour: int = None,  hall_n: int = None, limit = 20, offset = 0):
     try:
-        if type(movieId) != list: movieId = [movieId]    
+        limit, offset = int(limit), int(offset)
+        if movieId and type(movieId) != list: movieId = [movieId]    
         filtredSeances = S.query(seance.id).filter(and_(
             boolHelp(seance.movie_id.in_,movieId),
             boolHelp(extract('year', seance.date_time).__eq__, year),
@@ -254,7 +256,7 @@ def getFiltredSeances(movieId: list = [], year: int = None, month: int = None, d
         close()
 def getSeancesInfoById(seancesId: list):
     try:    
-        if type(seancesId) != list: seancesId = [seancesId] #парсинг внутри запроса БЫДЛОКОД
+        if seancesId and type(seancesId) != list: seancesId = [seancesId] #парсинг внутри запроса БЫДЛОКОД
         seances = S.query(seance).filter(seance.id.in_(seancesId))
         res = []
         for i in seances:
@@ -322,6 +324,7 @@ def updateReader(reader_id: int, name: str = "", surname: str = "", patronymic: 
 """
 def getFiltredTickets(seance_id: int, seat_id: int, price: int, sold_status: bool, booking_status: bool, limit = 20, offset = 0): #  seance_id: int, seat_id: int, price: int, sold_status: bool, booking_status: bool
     try: 
+        limit, offset = int(limit), int(offset)
         filtredTickets = S.query(ticket.id).filter(and_(
             boolHelp(ticket.seance_id.in_,seance_id),
             boolHelp(ticket.seat_id.in_,seat_id),
@@ -388,6 +391,7 @@ def getOverdueBooks():
 """
 def getFiltredSeats(hall_n: int = None, row_n: int = None, seat_n: int = None, seat_type: int = None,limit = 20, offset = 0):
     try: 
+        limit, offset = int(limit), int(offset)
         filtredSeats = S.query(seat.id).filter(and_(
             boolHelp(seat.hall_n.__eq__, hall_n),
             boolHelp(seat.row_n.__eq__, row_n),
@@ -445,19 +449,22 @@ def seance_soldetPropotion(seance_id: int, seat_type: str = None):
 
 
 def movie_getProfit(movie_id: int, seat_type: str = None):
-    try:        
+    try:
+        movie_id = int(movie_id)
         movieTickets = S.query(func.sum(ticket.price)).join(seance).filter(and_(
             seance.movie_id == movie_id, 
             ticket.sold_status == True)).all()
-        return movieTickets[0][0]
+        
+
+        return movieTickets[0][0] if movieTickets[0][0] else 0
     except:
         return SQLERR
     finally:
         close()
 def movie_ticketCount(movie_id: int, seat_type: str = None):
     try:    
-        return S.query(ticket).join(seat).filter(and_(
-            ticket.seance_id == movie_id, 
+        return S.query(ticket).join(seat).join(seance).filter(and_(
+            seance.movie_id == movie_id, 
             boolHelp(seat.seat_type.__eq__, seat_type))).count()
     except:
         return SQLERR
@@ -465,8 +472,8 @@ def movie_ticketCount(movie_id: int, seat_type: str = None):
         close()
 def movie_ticketSoldet(movie_id: int, seat_type: str = None):
     try:    
-        return S.query(ticket).join(seat).filter(and_(
-            ticket.seance_id == movie_id, 
+        return S.query(ticket).join(seat).join(seance).filter(and_(
+            seance.movie_id == movie_id, 
             ticket.sold_status == True, 
             boolHelp(seat.seat_type.__eq__, seat_type))).count()
     except:

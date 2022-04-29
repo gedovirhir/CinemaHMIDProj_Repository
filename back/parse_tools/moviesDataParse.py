@@ -43,7 +43,10 @@ def query_constraint_title_normalize(text): #нормализует "назва�
     return text
 def query_contraint_if_not_null_to_list(constr):
     if constr and type(constr) != list:
-        return [str(i) for i in constr.split(',')]
+        try:
+            return [str(i) for i in constr.split(',')]
+        except:
+            return [constr]
     return constr
 def genresNormalize(constr):
     constr = query_contraint_if_not_null_to_list(constr) #преобразуем возможную строку в массив
@@ -56,14 +59,17 @@ def genresNormalize(constr):
             except ValueError:
                 break
     return constr
+def yearNormalize(constr):
+    if re.match(r'\d\d\d\d', constr): return constr
+    return None
 def getFiltredMovies_parse(title: str, year: int, duration: int, publisher: str, genres):
     title = titleNormalize(title)
     publisher = publishmentNormalize(publisher)
     genres = genresNormalize(genres)
-    try: 
-        year = int(year)
-    except:
-        year = None
+    #try: 
+    #    year = int(year)
+    #except:
+    #    year = None
     try: 
         duration = int(duration)
     except:

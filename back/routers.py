@@ -109,14 +109,17 @@ def statGetMovie():
 @app.route('/stat/getSeance')
 def statGetSeance():
     r = request.args
-    movie_id = json.loads(back.getFiltredSeances(
+    a = back.getFiltredSeances.__defaults__[-2]
+    b = coalesce(r['limit'],back.getFiltredSeances.__defaults__[-2])
+    #movieId: list = [], year: int = None, month: int = None, day: int = None, hour: int = None,  hall_n: int = None, limit = 20, offset = 0
+    movie_id = json.loads(back.getFiltredMovies(
         r['title'],
         r['MovieYear'],
         r['duration'],
         r['publisher'],
         r['genre'],
-        coalesce(r['limit'],back.getFiltredSeances.__defaults__[-2]),
-        coalesce(r['offset'],back.getFiltredSeances.__defaults__[-1])
+        coalesce(r['limit'],back.getFiltredMovies.__defaults__[-2]),
+        coalesce(r['offset'],back.getFiltredMovies.__defaults__[-1])
     ))['body']
     seance_id = json.loads(back.getFiltredSeances(
         movie_id,
@@ -124,8 +127,10 @@ def statGetSeance():
         r['month'],
         r['day'],
         r['hour'],
-        r['hall_n']
+        r['hall_n'],
+        coalesce(r['limit'],back.getFiltredSeances.__defaults__[-2]),
+        coalesce(r['offset'],back.getFiltredSeances.__defaults__[-1])
     ))['body']
-    return back.getSeanceStat()(
+    return back.getSeanceStat(
         seance_id
     )
