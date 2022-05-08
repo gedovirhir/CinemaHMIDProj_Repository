@@ -30,7 +30,7 @@ namespace Kinoteatr
             WebClient client = new WebClient();
             client.Encoding = Encoding.GetEncoding("utf-8");
 
-            WebRequest request = WebRequest.Create("http://localhost:8080/ticket/get?title&MovieYear&duration&publisher&genre&SeanceYear&month&day&hour&hall_n&seat_n&seat_type&limit=10000+&offset&row_n&price&sold_status&booking_status");
+            WebRequest request = WebRequest.Create("http://25.46.163.182:8080/ticket/get?title&MovieYear&duration&publisher&genre&SeanceYear&month&day&hour&hall_n&seat_n&seat_type&limit=10000+&offset&row_n&price&sold_status&booking_status");
             WebResponse response = request.GetResponse();
             using (Stream stream = response.GetResponseStream())
             {
