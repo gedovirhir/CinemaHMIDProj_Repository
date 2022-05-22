@@ -49,16 +49,20 @@ namespace Kinoteatr
 
             for (int i = 0; i < sessionsFromAPI.body.Length; i++)
             {
+                string[] buff = sessionsFromAPI.body[i].datetime.Split(' ');
+                buff[1] = buff[1].Substring(0, buff[1].Length - 3);
+
                 dataGridView2.Rows.Add();
                 dataGridView2.Rows[i].Cells[0].Value = sessionsFromAPI.body[i].title;
-                dataGridView2.Rows[i].Cells[1].Value = sessionsFromAPI.body[i].datetime;
-                dataGridView2.Rows[i].Cells[2].Value = sessionsFromAPI.body[i].hall_n;
-                dataGridView2.Rows[i].Cells[3].Value = sessionsFromAPI.body[i].profit;
-                dataGridView2.Rows[i].Cells[4].Value = sessionsFromAPI.body[i].regularSeatsProfit;
-                dataGridView2.Rows[i].Cells[5].Value = sessionsFromAPI.body[i].dboxSeatsProfit;
-                dataGridView2.Rows[i].Cells[6].Value = sessionsFromAPI.body[i].ticketSoldet;
-                dataGridView2.Rows[i].Cells[7].Value = sessionsFromAPI.body[i].regularTicketSoldet;
-                dataGridView2.Rows[i].Cells[8].Value = sessionsFromAPI.body[i].dboxTicketSoldet;
+                dataGridView2.Rows[i].Cells[1].Value = buff[0];
+                dataGridView2.Rows[i].Cells[2].Value = buff[1];
+                dataGridView2.Rows[i].Cells[3].Value = sessionsFromAPI.body[i].hall_n;
+                dataGridView2.Rows[i].Cells[4].Value = sessionsFromAPI.body[i].profit;
+                dataGridView2.Rows[i].Cells[5].Value = sessionsFromAPI.body[i].regularSeatsProfit;
+                dataGridView2.Rows[i].Cells[6].Value = sessionsFromAPI.body[i].dboxSeatsProfit;
+                dataGridView2.Rows[i].Cells[7].Value = sessionsFromAPI.body[i].ticketSoldet;
+                dataGridView2.Rows[i].Cells[8].Value = sessionsFromAPI.body[i].regularTicketSoldet;
+                dataGridView2.Rows[i].Cells[9].Value = sessionsFromAPI.body[i].dboxTicketSoldet;
             }
 
             jsonLine = "";
