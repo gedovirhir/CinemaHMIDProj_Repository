@@ -75,11 +75,12 @@ namespace Kinoteatr
                     && ((buff[0] == ActiveText3.Text) || !notNullInputCheck[2]) 
                     && ((buff[1] == (ActiveText4.Text + ":00")) || !notNullInputCheck[3]))
                 {
+
                     dataGridView1.Rows.Add();
                     dataGridView1.Rows[addCount].Cells[0].Value = sessionsFromAPI.body[i].movieTitle;
                     dataGridView1.Rows[addCount].Cells[1].Value = sessionsFromAPI.body[i].hall_n;
                     dataGridView1.Rows[addCount].Cells[2].Value = buff[0];
-                    dataGridView1.Rows[addCount].Cells[3].Value = buff[1];
+                    dataGridView1.Rows[addCount].Cells[3].Value = buff[1].Substring(0, buff[1].Length - 3);
                     addCount++;
                 }
             }

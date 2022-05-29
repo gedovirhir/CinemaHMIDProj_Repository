@@ -70,6 +70,7 @@ namespace Kinoteatr
                     dataGridView1.Rows[addCount].Cells[4].Value = ticketsFromAPI.body[i].price;
                     dataGridView1.Rows[addCount].Cells[5].Value = buff[0];
                     dataGridView1.Rows[addCount].Cells[6].Value = buff[1];
+                    dataGridView1.Rows[addCount].Cells[7].Value = ticketsFromAPI.body[i].sold_status == true ? "Да" : "Нет";
                     addCount++;
                 }
             }

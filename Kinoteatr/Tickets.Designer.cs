@@ -36,13 +36,6 @@ namespace Kinoteatr
             this.ActiveText1 = new System.Windows.Forms.TextBox();
             this.nonActiveText1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.movieTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hall_n = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActiveText3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.ActiveText4 = new System.Windows.Forms.TextBox();
@@ -52,6 +45,14 @@ namespace Kinoteatr
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ActiveText7 = new System.Windows.Forms.TextBox();
+            this.movieTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hall_n = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,7 +140,8 @@ namespace Kinoteatr
             this.Column2,
             this.Column3,
             this.date_time,
-            this.Column4});
+            this.Column4,
+            this.Column5});
             this.dataGridView1.Location = new System.Drawing.Point(9, 10);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.MaximumSize = new System.Drawing.Size(1200, 425);
@@ -151,54 +153,6 @@ namespace Kinoteatr
             this.dataGridView1.Size = new System.Drawing.Size(1200, 425);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // movieTitle
-            // 
-            this.movieTitle.HeaderText = "Название фильма";
-            this.movieTitle.MinimumWidth = 6;
-            this.movieTitle.Name = "movieTitle";
-            this.movieTitle.ReadOnly = true;
-            // 
-            // hall_n
-            // 
-            this.hall_n.HeaderText = "Номер зала";
-            this.hall_n.MinimumWidth = 6;
-            this.hall_n.Name = "hall_n";
-            this.hall_n.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Номер ряда";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Номер места";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Цена";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // date_time
-            // 
-            this.date_time.HeaderText = "Дата";
-            this.date_time.MinimumWidth = 6;
-            this.date_time.Name = "date_time";
-            this.date_time.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Время";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
             // 
             // ActiveText3
             // 
@@ -308,6 +262,60 @@ namespace Kinoteatr
             this.ActiveText7.TabIndex = 24;
             this.ActiveText7.Visible = false;
             // 
+            // movieTitle
+            // 
+            this.movieTitle.HeaderText = "Название фильма";
+            this.movieTitle.MinimumWidth = 6;
+            this.movieTitle.Name = "movieTitle";
+            this.movieTitle.ReadOnly = true;
+            // 
+            // hall_n
+            // 
+            this.hall_n.HeaderText = "Номер зала";
+            this.hall_n.MinimumWidth = 6;
+            this.hall_n.Name = "hall_n";
+            this.hall_n.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Номер ряда";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Номер места";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Цена";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // date_time
+            // 
+            this.date_time.HeaderText = "Дата";
+            this.date_time.MinimumWidth = 6;
+            this.date_time.Name = "date_time";
+            this.date_time.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Время";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Продано";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
             // Tickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,6 +367,8 @@ namespace Kinoteatr
         private System.Windows.Forms.TextBox ActiveText5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ActiveText7;
         private System.Windows.Forms.DataGridViewTextBoxColumn movieTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn hall_n;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -366,7 +376,6 @@ namespace Kinoteatr
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn date_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox ActiveText7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }
