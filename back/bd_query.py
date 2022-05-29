@@ -516,7 +516,6 @@ def getSeanceStat(seance_id: list, limit = 5):
     seance_id = toList(seance_id)
     res = []
     for i in seance_id:
-        print(i)
         if limit == 0: break
         seanc = json.loads(getSeancesInfoById(i))['body'][0]
         res.append({

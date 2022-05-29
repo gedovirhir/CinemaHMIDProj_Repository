@@ -88,6 +88,10 @@ namespace Kinoteatr
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e) // Клик по ячейке таблицы
         {
+            if (dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value == null)
+            {
+                return;
+            }
             ToTickets.Visible = true; // Показываем кнопку информации о билетах
 
             // Получаем данные текущей строки
