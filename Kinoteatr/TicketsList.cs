@@ -11,8 +11,9 @@ namespace Kinoteatr
         //"id": 1, "seanceId": 1, "title": "Мистер Нокаут", "date_time": "2022-03-01 08:00:00", "hall_n": 0, "row_n": 0, "seat_n": 0, "seat_type": "d-box", "price": 150
         public uint id, hall_n, seanceId, row_n, seat_n, price;
         public string title, date_time, seat_type;
+        public bool sold_status;
 
-        public Ticket(uint inputId, uint inputSeanceId, string inputMovieTitle, string inputDateTime, uint inputHallNumber, uint inputRowNumber, uint inputSeatNumber, string inputSeatType, uint inputPrice)
+        public Ticket(uint inputId, uint inputSeanceId, string inputMovieTitle, string inputDateTime, uint inputHallNumber, uint inputRowNumber, uint inputSeatNumber, string inputSeatType, uint inputPrice, bool inputSoldStatus)
         {
             id = inputId;
             seanceId = inputSeanceId;
@@ -23,6 +24,7 @@ namespace Kinoteatr
             seat_n = inputSeatNumber;
             seat_type = inputSeatType;
             price = inputPrice;
+            sold_status = inputSoldStatus;
         }
     }
     public class TicketsList

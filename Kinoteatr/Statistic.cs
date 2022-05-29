@@ -31,7 +31,7 @@ namespace Kinoteatr
             WebClient client = new WebClient();
             client.Encoding = Encoding.GetEncoding("utf-8");
 
-            WebRequest request1 = WebRequest.Create("http://25.46.163.182:8080/stat/getSeance?title&MovieYear&duration&publisher&genre&limit=100&offset&SeanceYear&month&day&hour&hall_n");
+            WebRequest request1 = WebRequest.Create("http://25.46.163.182:8080/stat/getSeance?title&MovieYear&duration&publisher&genre&limit=90&offset&SeanceYear&month&day&hour&hall_n");
             WebResponse response1 = request1.GetResponse();
             using (Stream stream = response1.GetResponseStream())
             {
@@ -49,16 +49,20 @@ namespace Kinoteatr
 
             for (int i = 0; i < sessionsFromAPI.body.Length; i++)
             {
+                string[] buff = sessionsFromAPI.body[i].datetime.Split(' ');
+                buff[1] = buff[1].Substring(0, buff[1].Length - 3);
+
                 dataGridView2.Rows.Add();
                 dataGridView2.Rows[i].Cells[0].Value = sessionsFromAPI.body[i].title;
-                dataGridView2.Rows[i].Cells[1].Value = sessionsFromAPI.body[i].datetime;
-                dataGridView2.Rows[i].Cells[2].Value = sessionsFromAPI.body[i].hall_n;
-                dataGridView2.Rows[i].Cells[3].Value = sessionsFromAPI.body[i].profit;
-                dataGridView2.Rows[i].Cells[4].Value = sessionsFromAPI.body[i].regularSeatsProfit;
-                dataGridView2.Rows[i].Cells[5].Value = sessionsFromAPI.body[i].dboxSeatsProfit;
-                dataGridView2.Rows[i].Cells[6].Value = sessionsFromAPI.body[i].ticketSoldet;
-                dataGridView2.Rows[i].Cells[7].Value = sessionsFromAPI.body[i].regularTicketSoldet;
-                dataGridView2.Rows[i].Cells[8].Value = sessionsFromAPI.body[i].dboxTicketSoldet;
+                dataGridView2.Rows[i].Cells[1].Value = buff[0];
+                dataGridView2.Rows[i].Cells[2].Value = buff[1];
+                dataGridView2.Rows[i].Cells[3].Value = sessionsFromAPI.body[i].hall_n;
+                dataGridView2.Rows[i].Cells[4].Value = sessionsFromAPI.body[i].profit;
+                dataGridView2.Rows[i].Cells[5].Value = sessionsFromAPI.body[i].regularSeatsProfit;
+                dataGridView2.Rows[i].Cells[6].Value = sessionsFromAPI.body[i].dboxSeatsProfit;
+                dataGridView2.Rows[i].Cells[7].Value = sessionsFromAPI.body[i].ticketSoldet;
+                dataGridView2.Rows[i].Cells[8].Value = sessionsFromAPI.body[i].regularTicketSoldet;
+                dataGridView2.Rows[i].Cells[9].Value = sessionsFromAPI.body[i].dboxTicketSoldet;
             }
 
             jsonLine = "";
