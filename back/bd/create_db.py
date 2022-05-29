@@ -52,10 +52,10 @@ def _load_fake_data(s):
             c = dbox_n
             for n in range(seat_n):
                 if c > 0:
-                    st = seat(i,r,n,"d-box",True)
+                    st = seat(i+1,r+1,n+1,"d-box",True)
                     c -= 1
                 else:
-                    st = seat(i,r,n,"regular",True)
+                    st = seat(i+1,r+1,n+1,"regular",True)
                 s.add(st)
                 close()
     #фильмы
@@ -104,7 +104,7 @@ def _load_fake_data(s):
             movs = [(movies['mov_id'][num(i+k)],num(i+k)) for k in range(movperday)] #(id фильма, индекс в массиве)
             for _ in range(seancecount):
                 for m in movs:
-                    sc = seance(m[0], dt, h)
+                    sc = seance(m[0], dt, h+1)
                     s.add(sc)
                     close()
                     s.flush()

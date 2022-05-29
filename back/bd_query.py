@@ -352,7 +352,8 @@ def getTicketsInfoById(tickets_id: list):
                 "row_n" : i.seat.row_n,
                 "seat_n" : i.seat.seat_n,
                 "seat_type" : i.seat.seat_type,
-                "price" : i.price
+                "price" : i.price,
+                "sold_status" : i.sold_status
             })
         return json.dumps({
             "message" : SUC,
@@ -432,7 +433,7 @@ def seance_getProfit(seance_id: int, seat_type: str = None):
         ticket.seance_id == seance_id, 
         boolHelp(seat.seat_type.__eq__, seat_type), 
         ticket.sold_status == True)).all()
-    return seanceTickets[0][0]
+    return seanceTickets[0][0] if seanceTickets[0][0] else 0
 def seance_ticketCount(seance_id: int, seat_type: str = None):
     return S.query(ticket).join(seat).filter(and_(
         ticket.seance_id == seance_id, 
@@ -445,8 +446,10 @@ def seance_ticketSoldet(seance_id: int, seat_type: str = None):
 def seance_soldetPropotion(seance_id: int, seat_type: str = None):
     allTickets = seance_ticketCount(seance_id, seat_type)
     soldetTickets = seance_ticketSoldet(seance_id, seat_type)
-    return round(soldetTickets/allTickets, 2) * 100
-
+    try:
+        return round(soldetTickets/allTickets, 2) * 100
+    except ZeroDivisionError:
+        return 0
 
 def movie_getProfit(movie_id: int, seat_type: str = None):
     try:
@@ -484,7 +487,10 @@ def movie_soldetPropotion(movie_id: int, seat_type: str = None):
     soldetTickets = movie_ticketSoldet(int(movie_id), seat_type)
     allTickets = movie_ticketCount(int(movie_id), seat_type)
     if allTickets == 0: return 0
-    return round(soldetTickets/allTickets, 2) * 100
+    try:
+        return round(soldetTickets/allTickets, 2) * 100
+    except ZeroDivisionError:
+        return 0
 
 def getMovieStat(movie_id: list, limit = 5):
     movie_id = toList(movie_id)
