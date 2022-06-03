@@ -454,8 +454,9 @@ def seance_soldetPropotion(seance_id: int, seat_type: str = None):
 def movie_getProfit(movie_id: int, seat_type: str = None):
     try:
         movie_id = int(movie_id)
-        movieTickets = S.query(func.sum(ticket.price)).join(seance).filter(and_(
-            seance.movie_id == movie_id, 
+        movieTickets = S.query(func.sum(ticket.price)).join(seat).join(seance).filter(and_(
+            seance.movie_id == movie_id,
+            boolHelp(seat.seat_type.__eq__, seat_type), 
             ticket.sold_status == True)).all()
         
 
@@ -533,3 +534,5 @@ def getSeanceStat(seance_id: list, limit = 5):
             "message" : SUC,
             "body" : res    
         }, ensure_ascii=False)
+#S.query(ticket).filter(ticket.id == 2).update({ticket.sold_status : False})
+#close()
